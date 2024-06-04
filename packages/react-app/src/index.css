@@ -1,0 +1,45 @@
+.App {
+  text-align: center;
+}
+
+
+body {
+  margin: 0;
+  background-image: url("themes/header2.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right top;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+
+@font-face {
+  font-family: "Balivia";
+  src:url("../../react-app/src/fonts/Balivia.ttf");
+}
+
+.balivia {
+  font-family: "Balivia";
+  font-size: 32px;
+  color: yellowgreen;
+}
+
+
+hr.style-eight {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+.plantoid-text-cursive {
+  display: block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 50 !important;
+  font-size: 13px !important;
+  line-height: 100% !important;
+  text-align: justify !important;
+  /*color: gray; */
+}

@@ -1,0 +1,85 @@
+specVersion: 0.0.2
+schema:
+  file: ./src/schema.graphql
+templates:
+  - name: Plantoid
+    kind: ethereum/contract
+    network: mainnet
+    source:
+      abi: Plantoid
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/mapping.ts
+      entities:
+        - Seed
+        - Holder
+        - Proposal
+        - Vote
+        - Round
+      abis:
+        - name: Plantoid
+          file: ./abis/goerli_Plantoid.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256) 
+          handler: handleSeedTransfer
+        - event: ProposalSubmitted(address,string,uint256,uint256) 
+          handler: handleProposalSubmitted
+        - event: Voted(address,uint256,uint256,uint256) 
+          handler: handleVoted
+        - event: ProposalVetoed(uint256,uint256) 
+          handler: handleVetoed
+        - event: ProposalStarted(uint256,uint256) 
+          handler: handleProposalStarted
+        - event: VotingStarted(uint256,uint256) 
+          handler: handleVotingStarted
+        - event: GraceStarted(uint256,uint256) 
+          handler: handleGraceStarted
+        - event: ProposalAccepted(uint256,uint256) 
+          handler: handleProposalAccepted
+        - event: RoundInvalidated(uint256) 
+          handler: handleRoundInvalidated
+        - event: NewPlantoid(address) 
+          handler: handlePlantoidInitialized
+        - event: Revealed(uint256,string) 
+          handler: handleReveal
+dataSources:
+  - kind: ethereum/contract
+    name: PlantoidMetadata
+    network: matic
+    source:
+      address: "{{goerli_PlantoidMetadataAddress}}"
+      abi: PlantoidMetadata
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/mapping.ts
+      entities:
+        - Seed
+      abis:
+        - name: PlantoidMetadata
+          file: ./abis/goerli_PlantoidMetadata.json
+      eventHandlers:
+        - event: MetadataRevealed(address,uint256,string,bytes)
+          handler: handleMetadataReveal
+  - kind: ethereum/contract
+    name: PlantoidSpawn
+    network: mainnet
+    source:
+      address: "{{goerli_PlantoidSpawnAddress}}"
+      abi: PlantoidSpawn
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/mapping.ts
+      entities:
+        - Spawner
+      abis:
+        - name: PlantoidSpawn
+          file: ./abis/goerli_PlantoidSpawn.json
+      eventHandlers:
+        - event: PlantoidSpawned(indexed address)
+          handler: handleNewPlantoid

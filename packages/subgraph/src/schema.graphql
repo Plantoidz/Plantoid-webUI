@@ -1,0 +1,74 @@
+type Seed @entity {
+    id: ID!
+    tokenId: BigInt!
+    holder: Holder!
+    revealed: Boolean!
+    uri: String!
+    createdAt: BigInt!
+    transactionHash: String!
+    revealedSignature: Bytes
+    revealedUri: String
+    plantoid: PlantoidInstance!
+}
+
+type PlantoidInstance @entity {
+    id: ID!
+    address: Bytes!
+    oracle: Bytes
+    seeds: [Seed!] @derivedFrom(field: "plantoid")
+}
+
+type SeedMetadata @entity {
+    id: ID!
+    plantoid: PlantoidMetadata!
+    tokenId: BigInt!
+    createdAt: BigInt!
+    revealedSignature: Bytes
+    revealedUri: String
+}
+
+type PlantoidMetadata @entity {
+    id: ID!
+    address: Bytes!
+    seedMetadatas: [SeedMetadata!] @derivedFrom(field: "plantoid")
+}
+
+type Holder @entity {
+    id: ID!
+    address: Bytes!
+    seedCount: BigInt!
+    seeds: [Seed!] @derivedFrom(field: "holder")
+    proposals: [Proposal!] @derivedFrom(field: "proposer")
+    votes: [Vote!] @derivedFrom(field: "voter")
+    createdAt: BigInt!
+}
+
+type Proposal @entity {
+    id: ID!
+    round: Round!
+    proposalId: BigInt!
+    uri: String!
+    voteCount: BigInt!
+    votes: [Vote!] @derivedFrom(field: "proposal")
+    vetoed: Boolean!
+    proposer: Holder!
+}
+
+type Vote @entity {
+    id: ID!
+    voter: Holder!
+    round: Round!
+    proposal: Proposal!
+    eligibleVotes: BigInt!
+}
+
+type Round @entity {
+    id: ID!
+    proposals: [Proposal!] @derivedFrom(field: "round")
+    invalidated: Boolean!
+    proposalEnd: BigInt
+    votingEnd: BigInt
+    graceEnd: BigInt
+    winningProposal: Proposal
+    totalVotes: BigInt!
+}
