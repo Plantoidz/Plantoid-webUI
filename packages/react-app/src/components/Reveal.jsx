@@ -38,7 +38,7 @@ export default function Reveal({
     }
   `;
   const { loading, error, data } = useQuery(MD_QUERY, {
-    pollInterval: 2500,
+    pollInterval: 30000,
     context: { apiName: "metadata" },
     variables: {
       id: plantoidAddress,
@@ -120,8 +120,8 @@ export default function Reveal({
       }
       if (!data) return { ...g };
       const revealData = data?.plantoidMetadata?.seedMetadatas.find(s => s.id === g.id);
-      console.log("........................................\n");
-      console.log({ revealData });
+      // console.log("........................................\n");
+      // console.log({ revealData });
       if (revealData)
         return {
           ...g,
@@ -138,7 +138,7 @@ export default function Reveal({
       : [];
 
     // console.log( graphData.seeds)
-    console.log({ combinedData });
+    console.log({ holderData });
     console.log({ remainData });
 
     return (
@@ -149,7 +149,7 @@ export default function Reveal({
           Reveal your own NFTs
           <br />
           <Table
-            dataSource={_.sortBy(holderData, function (o) {
+            dataSource={_.sortBy(combinedData, function (o) {
               return -Number(o.tokenId);
             })}
             columns={revealColumns}

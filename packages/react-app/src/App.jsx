@@ -36,6 +36,8 @@ import Reveal from "./components/Reveal";
 
 const { ethers } = require("ethers");
 
+
+
 /*
     Welcome to 🏗 scaffold-eth !
 
@@ -69,7 +71,10 @@ const web3Modal = Web3ModalSetup();
 // 🛰 providers
 const providers = [`https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_KEY}`, "https://rpc.scaffoldeth.io:48544"];
 
-const ipfsBase = "https://gateway.ipfs.io/ipfs/";
+// const ipfsBase = "https://gateway.ipfs.io/ipfs/";
+// const ipfsBase = "https://gateway.moralisipfs.com/ipfs/";
+const ipfsBase = "https://ipfs.io/ipfs/";
+
 
 function App(props) {
   // specify all the chains your app is available on. Eg: ['localhost', 'mainnet', ...otherNetworks ]
@@ -257,7 +262,7 @@ function App(props) {
   `;
   const EXAMPLE_GQL = gql(EXAMPLE_GRAPHQL);
   const { error, data, refetch } = useQuery(EXAMPLE_GQL, {
-    pollInterval: 20500,
+    pollInterval: 30000,
     // context: { apiName: "goerli" },
     context: { apiName: selectedNetwork },
     variables: {
@@ -272,17 +277,38 @@ function App(props) {
   useEffect(() => {
     const newIpfsContent = { ...ipfsContent };
     async function fetchData(seed) {
-      const response = await fetch(`${ipfsBase}${seed.uri.split("ipfs://")[1]}`);
+    // const data = null;
+      // const fetchy = `${ipfsBase}${seed.uri.split("ipfs://")[1]}`
+      // console.log("............... fetchy === ", fetchy);
+
+      const response = await fetch(`${ipfsBase}${seed.uri.split("ipfs://")[1]}`,
+      {
+        // mode: 'no-cors'
+      });
+
       const data = await response.json();
       newIpfsContent[seed.id] = data;
       setIpfsContent(newIpfsContent);
+
+      // await fetch(`${ipfsBase}${seed.uri.split("ipfs://")[1]}`) //, { mode: 'no-cors'})
+      // .then (response => {
+      //     const data = response.json();
+      //     newIpfsContent[seed.id] = data;
+      //     setIpfsContent(newIpfsContent);
+      //     console.log("IPFS CONTENT: ", newIpfsContent);
+      // }).catch(err => { console.log("ERRORRRR: ", Error(err)); });
     }
+
+    //console.log("IPFS CONTENT:::: ", newIpfsContent);
+
+
     if (data?.plantoidInstance?.seeds?.length > 0) {
       for (let i = 0; i < data.plantoidInstance.seeds.length; i++) {
         const seed = data.plantoidInstance.seeds[i];
         // console.log(`RESOLVING SEED ${i}: `, seed);
+
         if (seed.revealed) {
-          // console.log(`REVEALING SEED ${i}: `, seed);
+          console.log(`REVEALING SEED ${i}: `, seed);
           if (!newIpfsContent[seed.id]) {
             fetchData(seed);
           }
@@ -292,6 +318,8 @@ function App(props) {
       // setIpfsContent(newIpfsContent);
     }
   }, [data, ipfsContent]);
+
+
 
   console.log({ ipfsContent });
 
@@ -663,7 +691,7 @@ function App(props) {
                 bordered
                 dataSource={events}
                 renderItem={item => {
-                  console.log({ item });
+                  // console.log({ item });
                   return (
                     <List.Item key={item.blockNumber + "_" + item.args.sender + "_" + item.args.depositIndex}>
                       {item.args[0].toString()}
