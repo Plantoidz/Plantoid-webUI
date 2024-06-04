@@ -187,13 +187,22 @@ function App(props) {
   //const plantoidAddress = "0x6949bc5Fb1936407bEDd9F3757DA62147741f2A1".toLowerCase();
   // const plantoidAddress = "0x4073E38f71b2612580E9e381031B0c38B3B4C27E".toLowerCase();  // default is mainnet
   
-  
+  // P14
+  // const Plantoids = {
+  //   "mainnet" : "0xffe18b42de363a9b06b6a6a91733f50f998c3f13".toLowerCase(),
+  //   "goerli"  : "0x9809D9C367fA49297c4b1F8E57A13a310b00cDc1".toLowerCase(),
+  //   "sepolia" : "0x7a46aC7926A92ab95C56C62d757b1A2FECD41c60".toLowerCase(),
+  // };
+
+  // P15
   const Plantoids = {
-    "mainnet" : "0xffe18b42de363a9b06b6a6a91733f50f998c3f13".toLowerCase(),
-    "goerli"  : "0x9809D9C367fA49297c4b1F8E57A13a310b00cDc1".toLowerCase(),
-    "sepolia" : "0x7a46aC7926A92ab95C56C62d757b1A2FECD41c60".toLowerCase(),
+    "mainnet" : "0x4073E38f71b2612580E9e381031B0c38B3B4C27E".toLowerCase(),
+    "goerli"  : "0x0b60ee161d7b67fa231e9565daff65b34553bc6f".toLowerCase(),
+    "sepolia" : "0x0000".toLowerCase(),
   };
 
+ 
+  
 
   const [ plantoidAddress, setPlantoidAddress] = useState(Plantoids["mainnet"]);
 
