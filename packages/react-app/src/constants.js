@@ -1,8 +1,18 @@
-// MY INFURA_ID, SWAP IN YOURS FROM https://infura.io/dashboard/ethereum
+// const path = require('path');
+// require('dotenv').config({ path: '/Users/ya/plantoidz-pi15/P14/plantoid-ui-ui4all/.env' });
+
+const { resolve } = require("path");
+require("dotenv").config({ path: resolve(__dirname, ".env") });
+
+console.log("-----------------> INFURA: ", process.env.REACT_APP_INFURA_API_KEY);
+
+// // MY INFURA_ID, SWAP IN YOURS FROM https://infura.io/dashboard/ethereum
 export const INFURA_ID = "460f40a260564ac4a4f4b3fffb032dad";
+// export const INFURA_ID = process.env.REACT_APP_INFURA_API_KEY;
+
 
 // MY ETHERSCAN_ID, SWAP IN YOURS FROM https://etherscan.io/myapikey
-export const ETHERSCAN_KEY = "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
+// export const ETHERSCAN_KEY = "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
 // BLOCKNATIVE ID FOR Notify.js:
 export const BLOCKNATIVE_DAPPID = "0b58206a-f3c0-4701-a62f-73c7243e8c77";
