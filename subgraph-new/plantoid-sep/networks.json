@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "PlantoidSpawn": {
+      "address": "0x3623E0f2394D51B5Ee67638Ce05933D6D441eE62",
+      "startBlock": 6047600
+    }
+  }
+}

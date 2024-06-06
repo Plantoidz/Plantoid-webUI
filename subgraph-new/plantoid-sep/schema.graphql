@@ -1,0 +1,7 @@
+type PlantoidSpawned @entity(immutable: true) {
+  id: Bytes!
+  plantoid: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

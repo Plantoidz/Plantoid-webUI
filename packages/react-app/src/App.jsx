@@ -90,7 +90,10 @@ function App(props) {
 
   const feedPlantoid = async plantoidAddress => {
     try {
-      await userSigner.sendTransaction({ to: plantoidAddress, value: ethers.utils.parseEther(txValue) });
+      console.log("FEED PLANTOID on network ::::  ", selectedNetwork);
+      console.log("with plantoid address = ", plantoidAddress);
+      console.log("and plantoids[i] ======= ", Plantoids[selectedNetwork]);
+      await userSigner.sendTransaction({ to: plantoidAddress, value: ethers.utils.parseEther("0.002") }); // @@@ restore for normal ops
     } catch (error) {
       console.log({ error });
     }
@@ -198,7 +201,7 @@ function App(props) {
   const Plantoids = {
     "mainnet" : "0x4073E38f71b2612580E9e381031B0c38B3B4C27E".toLowerCase(),
     "goerli"  : "0x0b60ee161d7b67fa231e9565daff65b34553bc6f".toLowerCase(),
-    "sepolia" : "0x0000".toLowerCase(),
+    "sepolia" : "0x66078a2061A68d5bA6cDdBc81517837dA0C7d7b5".toLowerCase(),
   };
 
  
@@ -476,7 +479,7 @@ function App(props) {
 
   const handleNetworkSwitch = (i) => {
     console.log("********************************************************************************************************************************************************************************************************************************************************************************************************************");
-    
+    console.log("switching to network: ", i, "  with plantoid address == ", Plantoids[i]);
     setSelectedNetwork(i);
     setPlantoidAddress(Plantoids[i]);
 
@@ -492,6 +495,7 @@ function App(props) {
     
 
     console.log("DATATATATTATATATATTATATATATTATATATATATAT: ", plantoidAddress);
+    console.log("selected network === ", selectedNetwork);
     console.log(data);  
   
   }
@@ -593,7 +597,7 @@ function App(props) {
           {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
           <div>
             <div style={{ border: "1px solid #cccccc", padding: 16, width: 800, margin: "auto", marginTop: 64 }}>
-              <h2>Plantoid #14</h2>
+              <h2>Plantoid #15</h2>
               <Divider />
               <div style={{ margin: 8 }}></div>
 
@@ -603,7 +607,8 @@ function App(props) {
                     style={{ border: "1px solid ", marginLeft: "-50px" }}
                     width={350}
                     height={520}
-                    src="https://ipfs.io/ipfs/QmRxsxzUEEHsp7QhoHwgDZZ79NTdZ5TH91r74z4cnSEcW6"
+                    src="https://ipfs.io/ipfs/QmRcrcn4X6QfSwFnJQ1dNHn8YgW7pbmm6BjZn7t8FW7WFV"
+                    // src="https://ipfs.io/ipfs/QmRxsxzUEEHsp7QhoHwgDZZ79NTdZ5TH91r74z4cnSEcW6"
                     // src="https://ipfs.io/ipfs/QmRcrcn4X6QfSwFnJQ1dNHn8YgW7pbmm6BjZn7t8FW7WFV"
                     // src="https://imagesvibe.com/wp-content/uploads/2023/03/Cute-Panda-Images1.jpg"
                     // src="https://ipfs.io/ipfs/QmQXzNG8X9jMYmcriSP4UEnighM9VLP9Ppt1EyEidBw3pk"
@@ -638,7 +643,7 @@ function App(props) {
                     </td>
                     <tr />
 
-                    <td align="right">Current balance:</td>
+                    <td >Current balance:</td>
                     <td> {ethers.utils.formatEther(plantoidBalance.toString())}</td>
                     <tr />
                     <td>Required threshold:</td>
@@ -646,30 +651,52 @@ function App(props) {
                     <tr />
                     <td>Currently in escrow:</td>
                     <td>{escrow ? ethers.utils.formatEther(escrow.toString()) : "???"}</td>
-                  </table>
+
+                    <tr/>
+  
+
+                    <td>
+                  <Divider />
+
+              <Button style={{height: '2em', 'font-size':'36px'}}
+                        // disabled={!txValue}
+                        onClick={() => {
+                          /* look how we call setPurpose AND send some value along */
+                          feedPlantoid(plantoidAddress);
+                          /* this will fail until you make the setPurpose function payable */
+                        }} >
+              Feed the Plantoid
+              </Button>
                 </td>
+
+
+                  </table>
+                </td><tr/>
+                
               </table>
 
-              <Divider />
-              <h2>Feed me !</h2>
-              <EtherInput
+             
+              
+              {/* <h2>Feed me !</h2> */}
+
+              {/* <EtherInput
                 price={price}
                 value={txValue}
                 onChange={value => {
                   setTxValue(value);
                 }}
-              />
-              <Button
+              /> */}
+
+              {/* <Button
                 disabled={!txValue}
                 onClick={() => {
-                  /* look how we call setPurpose AND send some value along */
                   feedPlantoid(plantoidAddress);
-                  /* this will fail until you make the setPurpose function payable */
-                }}
-              >
+                }} >
                 Feed
-              </Button>
-              {roundState === 0 && plantoidBalance >= threshold && (
+              </Button> */}
+
+
+              {/* {roundState === 0 && plantoidBalance >= threshold && (
                 <Button
                   disabled={plantoidBalance < threshold}
                   onClick={() => {
@@ -678,7 +705,10 @@ function App(props) {
                 >
                   Start submissions
                 </Button>
-              )}
+              )} */}
+
+
+
               <br />
               <Divider />
               {roundState > 0 ? (

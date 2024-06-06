@@ -1,0 +1,26 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: PlantoidSpawn
+    network: sepolia
+    source:
+      address: "0x3623E0f2394D51B5Ee67638Ce05933D6D441eE62"
+      abi: PlantoidSpawn
+      startBlock: 6047600
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - PlantoidSpawned
+      abis:
+        - name: PlantoidSpawn
+          file: ./abis/PlantoidSpawn.json
+      eventHandlers:
+        - event: PlantoidSpawned(indexed address)
+          handler: handlePlantoidSpawned
+      file: ./src/plantoid-spawn.ts
