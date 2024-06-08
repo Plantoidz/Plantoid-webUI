@@ -77,7 +77,9 @@ const ipfsBase = "https://ipfs.io/ipfs/";
 
 
 function App(props) {
-  // specify all the chains your app is available on. Eg: ['localhost', 'mainnet', ...otherNetworks ]
+
+  console.log("STARTING FUCKING APP RIGHT NOW @!#!@#!@#!@#!@@#!@#!@#!@#!@#!@#!@#!@#!@#!@#");
+    // specify all the chains your app is available on. Eg: ['localhost', 'mainnet', ...otherNetworks ]
   // reference './constants.js' for other networks
   const networkOptions = [initialNetwork.name, "sepolia", "goerli"];
 
@@ -93,7 +95,7 @@ function App(props) {
       console.log("FEED PLANTOID on network ::::  ", selectedNetwork);
       console.log("with plantoid address = ", plantoidAddress);
       console.log("and plantoids[i] ======= ", Plantoids[selectedNetwork]);
-      await userSigner.sendTransaction({ to: plantoidAddress, value: ethers.utils.parseEther("0.002") }); // @@@ restore for normal ops
+      await userSigner.sendTransaction({ to: plantoidAddress, value: ethers.utils.parseEther("0.001") }); // @@@ restore for normal ops
     } catch (error) {
       console.log({ error });
     }
@@ -274,7 +276,7 @@ function App(props) {
   `;
   const EXAMPLE_GQL = gql(EXAMPLE_GRAPHQL);
   const { error, data, refetch } = useQuery(EXAMPLE_GQL, {
-    pollInterval: 30000,
+    pollInterval: 60000,
     // context: { apiName: "goerli" },
     context: { apiName: selectedNetwork },
     variables: {

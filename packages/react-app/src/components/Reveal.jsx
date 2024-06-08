@@ -38,7 +38,7 @@ export default function Reveal({
     }
   `;
   const { loading, error, data } = useQuery(MD_QUERY, {
-    pollInterval: 30000,
+    pollInterval: 60000,
     context: { apiName: "metadata" },
     variables: {
       id: plantoidAddress,

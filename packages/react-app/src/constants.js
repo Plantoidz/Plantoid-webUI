@@ -7,9 +7,8 @@ require("dotenv").config({ path: resolve(__dirname, ".env") });
 console.log("-----------------> INFURA: ", process.env.REACT_APP_INFURA_API_KEY);
 
 // // MY INFURA_ID, SWAP IN YOURS FROM https://infura.io/dashboard/ethereum
-// export const INFURA_ID = "460f40a260564ac4a4f4b3fffb032dad";
+export const INFURA_ID = "460f40a260564ac4a4f4b3fffb032dad";
 // export const INFURA_ID = process.env.REACT_APP_INFURA_API_KEY;
-export const INFURA_ID = "3e0e337a9e144b08b56d2b1b35f3c90b";
 
 
 // MY ETHERSCAN_ID, SWAP IN YOURS FROM https://etherscan.io/myapikey

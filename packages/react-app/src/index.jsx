@@ -21,7 +21,7 @@ const client = new ApolloClient({
         mainnet: `https://api.thegraph.com/subgraphs/name/ipatka/plantoid-mainnet-v2`,
         goerli: `https://api.thegraph.com/subgraphs/name/yaoe/plantoid-14-goerli`,
         // sepolia: `https://api.studio.thegraph.com/query/68539/plantoid-studio-sepolia/version/latest`,
-        sepolia: `https://gateway-arbitrum.network.thegraph.com/api`,
+        sepolia: `https://api.studio.thegraph.com/query/68539/plantoid-sep/3`,
 
        // sepolia: `https://api.thegraph.com/subgraphs/name/yaoe/plantoid-sepoliai`,
       },

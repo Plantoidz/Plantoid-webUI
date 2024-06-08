@@ -126,7 +126,7 @@ export default function Gallery({
 
 
     <div>
-      <h1 className="gallery-title">Welcome to the gallery of Plantoid 14</h1>
+      <h1 className="gallery-title">Welcome to the gallery of Plantoid 15</h1>
       <p className="gallery-description">Here you can see all of its digital NFT seeds</p>
       
      
