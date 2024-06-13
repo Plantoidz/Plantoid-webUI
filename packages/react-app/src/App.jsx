@@ -78,7 +78,7 @@ const ipfsBase = "https://ipfs.io/ipfs/";
 
 function App(props) {
 
-  console.log("STARTING FUCKING APP RIGHT NOW @!#!@#!@#!@#!@@#!@#!@#!@#!@#!@#!@#!@#!@#!@#");
+  console.log("STARTING APP RIGHT NOW @!#!@#!@#!@#!@@#!@#!@#!@#!@#!@#!@#!@#!@#!@#");
     // specify all the chains your app is available on. Eg: ['localhost', 'mainnet', ...otherNetworks ]
   // reference './constants.js' for other networks
   const networkOptions = [initialNetwork.name, "sepolia", "goerli"];
