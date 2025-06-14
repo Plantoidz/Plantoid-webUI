@@ -201,12 +201,13 @@ function App(props) {
 
   // P15
   const Plantoids = {
-    "mainnet" : "0x4073E38f71b2612580E9e381031B0c38B3B4C27E".toLowerCase(),
-    "goerli"  : "0x0b60ee161d7b67fa231e9565daff65b34553bc6f".toLowerCase(),
-    "sepolia" : "0x66078a2061A68d5bA6cDdBc81517837dA0C7d7b5".toLowerCase(),
+   // "mainnet" : "0x4073E38f71b2612580E9e381031B0c38B3B4C27E".toLowerCase(), // P15
+    "mainnet" : "0xFfe18b42DE363a9b06b6a6a91733f50F998c3F13".toLowerCase(), // P14
+    "goerli"  : "0x0b60ee161d7b67fa231e9565daff65b34553bc6f".toLowerCase(), // P15
+   // "sepolia" : "0x66078a2061A68d5bA6cDdBc81517837dA0C7d7b5".toLowerCase(), // P15
+    "sepolia" : "0x3c6570206bb6b3bcbec27643cbc89003a25cac8c".toLowerCase(), // P14
   };
 
- 
   
 
   const [ plantoidAddress, setPlantoidAddress] = useState(Plantoids["mainnet"]);
